@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{block.super}} Welcome back, {{ student }}
+{% endblock %}
+
+{% block content %}
+	<h3>Welcome back, {{ student.name }}!</h3>
+	{% if payments %}
+		<h4>Your current plans are:</h4>
+		{% for payment in payments %}
+			{{payment.plan.name}}: Expires {{payment.plan.end_date}}.
+		{% endfor %}
+	{% else %}
+		<h4>You currently don't have any plans. Come to Penn Student Agencies to get one and start riding!</h4>
+	{% endif %}
+	{% if waiver_needed %}
+	<h2>You must sign the following waiver before you are eligible to ride.</h2>
+	{% include "waiver.html"}
+{% endblock %}

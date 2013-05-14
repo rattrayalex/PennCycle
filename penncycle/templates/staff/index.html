@@ -1,0 +1,33 @@
+{% extends 'base_admin.html' %}
+
+{% load partition %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="span6 well">
+        <h2>Check Out</h2>
+        {% for row in bikes_for_checkout|columns:"2" %}
+            <div class="row-fluid">
+                {% for bike in row %}
+                    <div class="bike span6">
+                        <h2>{{ bike.bike_name }}</h2>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="span6 well">
+        <h2>Check In</h2>
+        {% for row in bikes_for_checkin|columns:"2" %}
+            <div class="row-fluid">
+                {% for bike in row %}
+                    <div class="bike span6">
+                        <h2>{{ bike.bike_name }}</h2>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

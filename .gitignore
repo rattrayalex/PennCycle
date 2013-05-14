@@ -1,0 +1,5 @@
+*.pyc
+*.db
+*.py~
+*.dump
+static
