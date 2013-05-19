@@ -17,8 +17,8 @@ class Dashboard(LoginRequiredMixin, TemplateView):
             station_name = self.request.user.groups.exclude(name='Associate')[0].name
         except IndexError:
             station_name = "No Station"
-        bikes_for_checkout = [b for b in Bike.objects.all() if b.location.name == station_name and b.status == 'available']
-        bikes_for_checkin = [b for b in Bike.objects.all() if b.status == 'checked out']
+        bikes_for_checkout = list(Bike.objects.filter('location__name'=station_name).filter('status'='available'))
+        bikes_for_checkin = list(Bike.objects.filter('status'='checked out'))
         context['location'] = station_name
         context['bikes_for_checkout'] = bikes_for_checkout
         context['bikes_for_checkin'] = bikes_for_checkin
